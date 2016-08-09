@@ -81,7 +81,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-3">
+				<p>Showing 1 to <span ng-bind="filter.limit"></span> of <span ng-bind="paging.totalRecords"></span> entries</p>
 				<select class="form-control" ng-change="rowChange(row)" ng-model="row">
 					<option ng-repeat="row in rows" ng-bind="row" ng-value="row"></option>
 				</select>
