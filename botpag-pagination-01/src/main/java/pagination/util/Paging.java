@@ -52,25 +52,8 @@ public class Paging implements Serializable{
 
 	public int totalPages() {
 		return (int) Math.ceil((double) this.totalCount / limit);
-
 	}
-
-	public int nextPage() {
-		return this.page + 1;
-	}
-
-	public int previousPage() {
-		return this.page - 1;
-	}
-
-	public boolean hasNextPage() {
-		return this.nextPage() <= this.totalPages() ? true : false;
-	}
-
-	public boolean hasPreviousPage() {
-		return this.previousPage() >= 1 ? true : false;
-	}
-
+	
 	public int offset() {
 		this.offset = (this.page - 1) * limit;
 		return this.offset;
@@ -106,17 +89,10 @@ public class Paging implements Serializable{
 		this.totalPages = totalPages;
 	}
 
-	/**
-	 * @return the offset
-	 */
 	public int getOffset() {
 		return this.offset();
 	}
 
-	/**
-	 * @param offset
-	 *            the offset to set
-	 */
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}

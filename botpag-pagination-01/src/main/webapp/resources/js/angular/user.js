@@ -5,10 +5,7 @@ var app = angular.module('userApp', []);
 app.controller('userCtrl', function($scope, $http){
 	
 	//TODO: define base url
-	var BASE_URL = "http://localhost:7777";
-	
-	//TODO: declare user object
-	var USER = {};
+	var base_url = "http://localhost:7777";
 	
 	//TODO:
 	$scope.users = [];
@@ -16,7 +13,7 @@ app.controller('userCtrl', function($scope, $http){
 	//TODO: default filter
 	$scope.filter = {
 		page: 1,
-		limit: 2,
+		limit: 4,
 		firstName: '',
 		lastName: '',
 		status: '',
@@ -29,6 +26,10 @@ app.controller('userCtrl', function($scope, $http){
 	
 	//TODO: 
 	var PAGINATION = angular.element('#pagination'); 
+	
+	
+	//TODO: declare user object
+	var USER = {};
 	
 	//TODO: load Pagination
 	USER.loadPagination = function(response){
@@ -63,10 +64,11 @@ app.controller('userCtrl', function($scope, $http){
 	//TODO: define method for load all records
 	USER.findAll = function(){
 		$http({
-			url: BASE_URL + '/api/user',
+			url: base_url + '/api/user',
 			method: 'GET',
 			params: $scope.filter
 		}).then(function(success){
+			console.log(success);
 			$scope.users = success.data.DATA;
 			USER.loadPagination(success.data);
 			console.log($scope.users);
