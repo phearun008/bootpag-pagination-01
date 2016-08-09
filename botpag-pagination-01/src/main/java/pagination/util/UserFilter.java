@@ -10,22 +10,7 @@ public class UserFilter{
 	private String lastName;
 	private String roleName;
 	private String gender;
-	public UserFilter(){
-		status = "";
-		firstName = "";
-		lastName = "";
-		roleName = "";
-		gender = "";
-	}
 	
-	public UserFilter(String gender, String firstName, String lastName, String roleName, String status) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.roleName = roleName;
-		this.gender = gender;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}

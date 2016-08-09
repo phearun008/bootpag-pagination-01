@@ -13,12 +13,12 @@ app.controller('userCtrl', function($scope, $http){
 	//TODO: default filter
 	$scope.filter = {
 		page: 1,
-		limit: 4,
-		firstName: '',
-		lastName: '',
-		status: '',
-		roleName: '',
-		gender: ''
+		limit: 2,
+		firstName: null,
+		lastName: null,
+		status: null,
+		roleName: null,
+		gender: null
 	};
 	
 	//TODO: 

@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import pagination.entity.User;
+import pagination.repository.provider.UserProvider;
 import pagination.util.Paging;
 import pagination.util.UserFilter;
 
@@ -21,7 +22,7 @@ public interface UserRepository {
 	 * @param paging
 	 * @return
 	 */
-	@Select(SQL.SELECT_PAGING)
+	@SelectProvider(type=UserProvider.class, method = "findAll")
 	@Results({
 		@Result(property="id", column="id"),
 		@Result(property="firstName", column="firstname"),
@@ -38,15 +39,37 @@ public interface UserRepository {
 	 * @param filter
 	 * @return
 	 */
-	@Select(SQL.COUNT)
+	@SelectProvider(type=UserProvider.class, method = "count")
 	public Long count(UserFilter filter);
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/***
 	 * SQL Factory!!!
 	 */
-	interface SQL {
+	interface SQL { // select provider instead
 		
 		/***
 		 * 
