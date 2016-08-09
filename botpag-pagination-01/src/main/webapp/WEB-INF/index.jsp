@@ -31,33 +31,25 @@
 		<h1 style="text-align:center">USER MANAGEMENT SYSTEM</h1><hr>
 		<div class="row">
 			<div class="col-sm-3">	
-				<select class="form-control">
-					<option>ALL ROLES</option>
-					<option>Admin</option>
-					<option>Editor</option>
-					<option>Subscriber</option>
-					<option>Visitor</option>
+				<select class="form-control" ng-change="roleChange(role)" ng-model="role">
+					<option ng-repeat="role in roles" ng-bind="role.text" ng-value="role.value"></option>
 				</select>
 			</div>
 			<div class="col-sm-3">	
-				<select class="form-control">
-					<option>ALL GENDERS</option>
-					<option>Male</option>
-					<option>Female</option>
+				<select class="form-control" ng-change="genderChange(gender)" ng-model="gender">
+					<option ng-repeat="gender in genders" ng-bind="gender.text" ng-value="gender.value"></option>
 				</select>
 			</div>
 			<div class="col-sm-2">	
-				<select class="form-control">
-					<option>ALL STATUS</option>
-					<option>Enable</option>
-					<option>Disable</option>
+				<select class="form-control" ng-change="statusChange(s)" ng-model="s">
+					<option ng-repeat="s in status" ng-bind="s.text" ng-value="s.value"></option>
 				</select>
 			</div>
 			<div class="col-sm-2">	
-				<input type="text" class="form-control" placeholder="Search Firstname" >
+				<input ng-model="filter.firstName" type="text" ng-keyup="firstNameChange()" class="form-control" placeholder="Search Firstname" >
 			</div>
 			<div class="col-sm-2">	
-				<input type="text" class="form-control" placeholder="Search Lastname" >
+				<input ng-model="filter.lastName" ng-keyup="lastNameChange()" type="text" class="form-control" placeholder="Search Lastname" >
 			</div>
 		</div>
 		<div class="row">
@@ -77,8 +69,8 @@
 					<tbody>
 						<tr ng-repeat="user in users">
 							<td ng-bind="user.id"></td>
-							<td ng-bind="user.last_name"></td>
 							<td ng-bind="user.first_name"></td>
+							<td ng-bind="user.last_name"></td>
 							<td ng-bind="user.gender"></td>
 							<td ng-bind="user.email"></td>
 							<td ng-bind="user.role"></td>
@@ -87,8 +79,18 @@
 					</tbody>
 				</table>
 			</div>
-			<div id="pagination" class="col-sm-12"></div>
 		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<select class="form-control" ng-change="rowChange(row)" ng-model="row">
+					<option ng-repeat="row in rows" ng-bind="row" ng-value="row"></option>
+				</select>
+			</div>
+			<div class="pull-right">
+				<div id="pagination" class="col-sm-12"></div>		
+			</div>
+		</div>
+		<code>{{filter | json}}</code>
 	</div>
 	<script src="/resources/js/angular/user.js"></script>
 </body>

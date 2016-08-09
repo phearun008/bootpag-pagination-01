@@ -10,10 +10,26 @@ app.controller('userCtrl', function($scope, $http){
 	//TODO:
 	$scope.users = [];
 	
+	$scope.roles = [{value: 'all', text: 'ALL ROLES'},
+	                {value: 'admin', text: 'Administrator'},
+	                {value: 'editor', text: 'Editor'},
+	                {value: 'subscriber', text: 'Subscriber'},
+	                {value: 'visitor', text: 'Visitor'}];
+	
+	$scope.genders = [{value: 'all', text: 'ALL GENDERS'},
+	                  {value: 'male', text: 'Male'},
+	                  {value: 'female', text: 'Female'}];
+	
+	$scope.status = [{value: 'all', text: 'ALL STATUS'},
+	                 {value: '1', text: 'Enable'},
+	                 {value: '0', text: 'Disable'}]
+	
+	$scope.rows = [1, 2, 3, 5];
+	
 	//TODO: default filter
 	$scope.filter = {
 		page: 1,
-		limit: 2,
+		limit: $scope.rows[0],
 		firstName: null,
 		lastName: null,
 		status: null,
@@ -24,6 +40,41 @@ app.controller('userCtrl', function($scope, $http){
 	//TODO: 
 	$scope.paging = {};
 	
+	//TODO: on role change
+	$scope.roleChange = function(role){
+		$scope.filter.roleName = role === 'all'?null:role;
+		USER.findAll();
+	};
+	
+	//TODO: on gender change
+	$scope.genderChange = function(gender){
+		console.log(gender);
+		$scope.filter.gender = gender === 'all'?null:gender;
+		USER.findAll();
+	};
+	
+	//TODO: on status change
+	$scope.statusChange = function(status){
+		$scope.filter.status = status ==='all'?null:status;
+		USER.findAll();
+	};
+	
+	//TODO: on first name change
+	$scope.firstNameChange = function(){
+		USER.findAll();
+	};
+	
+	//TODO: on last name change
+	$scope.lastNameChange = function(){
+		USER.findAll();
+	};
+	
+	//TODO: on row change
+	$scope.rowChange = function(row){
+		$scope.filter.limit = row;
+		USER.findAll();
+	};
+	
 	//TODO: 
 	var PAGINATION = angular.element('#pagination'); 
 	
@@ -33,7 +84,6 @@ app.controller('userCtrl', function($scope, $http){
 	
 	//TODO: load Pagination
 	USER.loadPagination = function(response){
-		
 		//TODO: Initialize pagination setting
 		$scope.paging = {
 			totalPages: response.PAGING.TOTAL_PAGES,
@@ -43,7 +93,7 @@ app.controller('userCtrl', function($scope, $http){
 		};
 		//TODO:
 		PAGINATION.bootpag({
-	        total: $scope.paging.totalPages,
+	        total: $scope.paging.totalPages==0?1:$scope.paging.totalPages,
 	        page: $scope.paging.currentPage,
 	        leaps: true,
 	        firstLastUse: true,
@@ -71,7 +121,6 @@ app.controller('userCtrl', function($scope, $http){
 			console.log(success);
 			$scope.users = success.data.DATA;
 			USER.loadPagination(success.data);
-			console.log($scope.users);
 		}, function(error){
 			console.log(error);
 		});
