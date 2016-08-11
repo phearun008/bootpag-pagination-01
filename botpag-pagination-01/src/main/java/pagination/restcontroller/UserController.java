@@ -50,5 +50,20 @@ public class UserController {
 		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+
+	
+	@RequestMapping(value = "/u", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findAll(Paging paging) {
+		
+		Console.log(paging);
+		
+		ArrayList<User> users = userService.findAll(paging);
+		Map<String, Object> map = new HashMap<>();
+		map.put("DATA", users);
+		map.put("PAGING", paging);
+		
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+
 	
 }

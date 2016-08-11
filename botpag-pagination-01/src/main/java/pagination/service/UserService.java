@@ -18,5 +18,7 @@ public interface UserService {
 	 */
 	public ArrayList<User> findAll(UserFilter filter, Paging paging);
 	
+	public ArrayList<User> findAll(Paging paging);
+	
 	
 }
