@@ -5,8 +5,9 @@ var app = angular.module('userApp', []);
 app.controller('userCtrl', function($scope, $http){
 	
 	//TODO: define base url
-	var base_url = "http://localhost:7777";
-	
+	//var base_url = "http://localhost:7777";
+	var base_url ="";
+		
 	//TODO:
 	$scope.users = [];
 	
